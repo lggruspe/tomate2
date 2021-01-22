@@ -1,0 +1,29 @@
+{
+  "name": "tomate",
+  "version": "1.0.0",
+  "description": "Pomodoro timer",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --fix src test",
+    "test": "nyc mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lggruspe/tomate.git"
+  },
+  "author": "Levi Gruspep",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lggruspe/tomate/issues"
+  },
+  "homepage": "https://github.com/lggruspe/tomate#readme",
+  "devDependencies": {
+    "eslint": "^7.18.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0"
+  }
+}
