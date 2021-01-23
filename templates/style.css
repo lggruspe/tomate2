@@ -6,10 +6,11 @@
   --color-e: #d42929;
   --color-white: #ffffe8;
   --color-black: #222222;
+  --sans-serif: "Open Sans", sans-serif;
 }
 
 html {
-  font-family: sans-serif;
+  font-family: var(--sans-serif);
   background-color: var(--color-d);
 }
 
@@ -53,7 +54,7 @@ header {
 
 header h1 {
   color: var(--color-white);
-  font-family: "Seaweed Script", sans-serif;
+  font-family: "Seaweed Script", var(--sans-serif);
 }
 
 main {
