@@ -117,42 +117,35 @@ footer {
   text-align: right;
 }
 
-#hamburger-checkbox {
-  display: none;
-}
-
-.hamburger-menu {
-  display: none;
-  text-align: center;
-  font-size: 1.5em;
-}
-
-#hamburger-checkbox:checked + .hamburger-menu {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  top: 0;
-  left: 0;
-  background-color: var(--color-d);
-  box-sizing: border-box;
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-}
-
+#hamburger-checkbox,
 .hamburger-button {
-  color: var(--color-white);
   display: none;
-  font-size: 1.5em;
 }
 
 @media screen and (max-width: 620px) {
   .hamburger-button {
     display: inline;
+    color: var(--color-white);
+    font-size: 1.5em;
   }
 
-  header nav {
+  .hamburger-menu {
     display: none;
+  }
+
+  #hamburger-checkbox:checked + .hamburger-menu {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    background-color: var(--color-d);
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    font-size: 1.5em;
+    text-align: center;
   }
 }
 
