@@ -1,0 +1,179 @@
+:root {
+  --color-a: #cc9c9c;
+  --color-b: #df8e8e;
+  --color-c: #d87575;
+  --color-d: #d44848;
+  --color-e: #d42929;
+  --color-white: #ffffe8;
+  --color-black: #222222;
+}
+
+html {
+  font-family: sans-serif;
+  background-color: var(--color-d);
+}
+
+body {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-white);
+}
+
+button {
+  color: var(--color-white);
+  background-color: var(--color-d);
+  border-radius: 5px;
+  padding: 0.5em;
+  border: 0;
+  min-width: 8em;
+}
+
+button:hover {
+  background-color: var(--color-e);
+}
+
+button:active {
+  background-color: var(--color-d);
+}
+
+button:disabled {
+  background-color: var(--color-b);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1em;
+}
+
+header h1 {
+  color: var(--color-white);
+  font-family: "Seaweed Script", sans-serif;
+}
+
+main {
+  margin: 1em;
+}
+
+footer {
+  margin: 1em 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  border: 1px solid var(--color-d);
+  border-radius: 8px;
+  margin: 1em 0;
+  padding: 0.5em;
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+.link {
+  padding: 0.35em;
+  border-radius: 5px;
+}
+
+.link:hover {
+  background-color: var(--color-e);
+}
+
+.message {
+  text-align: center;
+}
+
+.task {
+  align-items: center;
+  gap: 1em;
+  display: flex;
+  margin: 0.5em 0;
+}
+
+.task input {
+  flex: auto;
+  min-width: 200px;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin: 0.5em 0;
+}
+
+.form-item input {
+  flex: auto;
+}
+
+.form-button {
+  text-align: right;
+}
+
+#hamburger-checkbox {
+  display: none;
+}
+
+.hamburger-menu {
+  display: none;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+#hamburger-checkbox:checked + .hamburger-menu {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  background-color: var(--color-d);
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+}
+
+.hamburger-button {
+  color: var(--color-white);
+  display: none;
+  font-size: 1.5em;
+}
+
+@media screen and (max-width: 620px) {
+  .hamburger-button {
+    display: inline;
+  }
+
+  header nav {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .form-item {
+    flex-direction: column;
+  }
+
+  .form-item input {
+    box-sizing: border-box;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .task {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .task input {
+    order: 1;
+  }
+}

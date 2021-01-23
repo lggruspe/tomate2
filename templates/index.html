@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Tómate</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Seaweed+Script&display=swap" rel="stylesheet">
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1><a href="#">Tómate tu tiempo</a></h1>
+      <label for="hamburger-checkbox" class="link hamburger-button">≡</label>
+      <nav>
+        <a class="link" href="#">Estadísticas</a>
+        <a class="link" href="#">Iniciar sesión</a>
+        <a class="link" href="#">Crear cuenta</a>
+      </nav>
+    </header>
+    <nav>
+      <input type="checkbox" id="hamburger-checkbox">
+      <div class="hamburger-menu">
+        <a class="link" href="#">Estadísticas</a>
+        <a class="link" href="#">Iniciar sesión</a>
+        <a class="link" href="#">Crear cuenta</a>
+        <label for="hamburger-checkbox" class="link hamburger-button">&times;</label>
+      </div>
+    </nav>
+    <main>
+      <section class="card">
+        <p class="message">Añade tareas por hacer.</p>
+      </section>
+      <section class="card">
+        <p class="message">¡Tomaste X tomates (o Y minutos)! Añade más tareas por hacer.</p>
+      </section>
+      <section class="card">
+        <div class="task">
+          <span>25:00</span>
+          <input required title="Puedes añadir #etiquetas para filtrar tareas en la página de estadísticas." value="¡Haz tarea! #estudio">
+          <button>Empezar</button>
+        </div>
+        <div class="task">
+          <span>10:00</span>
+          <input required title="Puedes añadir #etiquetas para filtrar tareas en la página de estadísticas." value="¡Haz otra!">
+          <button disabled>Empezar</button>
+        </div>
+      </section>
+      <form class="card">
+        <div class="form-item">
+          <label for="duration">¿Cuántos minutos necesitas para hacer la tarea?</label>
+          <input type="number" id="duration" min-value="0" max-value="60" value="25" required>
+        </div>
+        <div class="form-item">
+          <label for="description">Describe la tarea.</label>
+          <input id="description" value="Pomodoro" required title="Puedes añadir #etiquetas para filtrar tareas en la página de estadísticas.">
+        </div>
+        <div class="form-button">
+          <button type="button">Agregar</button>
+        </div>
+      </form>
+    </main>
+    <footer>
+      <a class="link" href="#">Política de privacidad</a>
+      <a class="link" href="#">Términos y condiciones</a>
+      <a class="link" href="#">Acerca de</a>
+    </footer>
+  </body>
+</html>
