@@ -7,6 +7,12 @@ module.exports.Timer = class Timer {
     }
     this.minutes = minutes
     this.seconds = 0
+    this.started = false
+    this.callbacks = []
+  }
+
+  isDone () {
+    return this.seconds === 0 && this.minutes === 0
   }
 
   tick () {
@@ -27,5 +33,40 @@ module.exports.Timer = class Timer {
       ? '0' + this.seconds
       : this.seconds
     return `${minutes}:${seconds}`
+  }
+
+  addAlarm (callback) {
+    this.callbacks.push(callback)
+    return this
+  }
+
+  alarm () {
+    for (const callback of this.callbacks) {
+      callback()
+    }
+  }
+
+  render (container) {
+    const timer = container.querySelector('.tomate-timer')
+    const button = container.querySelector('.tomate-timer-button')
+
+    const oneSecond = () => {
+      timer.textContent = this.toString()
+      if (!this.isDone()) {
+        this.tick()
+        setTimeout(oneSecond, 1000)
+      }
+    }
+
+    button.addEventListener('click', () => {
+      if (this.started) {
+        this.alarm()
+      } else {
+        this.started = true
+        button.textContent = 'Parar'
+        oneSecond()
+      }
+    })
+    return container
   }
 }

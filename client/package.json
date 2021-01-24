@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint --fix src test",
-    "test": "nyc mocha"
+    "test": "nyc mocha",
+    "bundle": "browserify src/index.js -o build/bundle.js",
+    "minify": "terser build/bundle.js -o build/index.js --mangle --compress"
   },
   "repository": {
     "type": "git",
@@ -18,12 +20,15 @@
   },
   "homepage": "https://github.com/lggruspe/tomate#readme",
   "devDependencies": {
+    "browserify": "^17.0.0",
     "eslint": "^7.18.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
+    "jsdom": "^16.4.0",
     "mocha": "^8.2.1",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    "terser": "^5.5.1"
   }
 }
