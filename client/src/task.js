@@ -11,10 +11,10 @@ class Task {
     const div = document.createElement('div')
     div.classList.add('task')
     const help = 'Puedes añadir #etiquetas para filtrar tareas en la página de estadísticas.'
-    // TODO escape description
+    const description = this.description.replaceAll('"', '&quot;')
     div.innerHTML = `
       <span class="tomate-timer">${this.timer.toString()}</span>
-      <input required title="${help}" value="${this.description}">
+      <input required title="${help}" value="${description}">
       <button${disabled ? ' disabled' : ''} class="tomate-timer-button">Empezar</button>
     `
     this.timer.render(div)

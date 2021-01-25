@@ -142,5 +142,11 @@ describe('Task', function () {
       assert(elem.querySelector('.tomate-timer'))
       assert(elem.querySelector('.tomate-timer-button'))
     })
+
+    it('should escape double quotes', function () {
+      const task = new Task(25, 'a"b"c')
+      const elem = task.createElement()
+      assert.strictEqual(elem.querySelector('input').value, 'a"b"c')
+    })
   })
 })
