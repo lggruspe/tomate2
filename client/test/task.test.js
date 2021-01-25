@@ -4,9 +4,11 @@ const {
   TaskQueue
 } = require('../src/task.js')
 
+const { mockAudio } = require('./utils.js')
 const { JSDOM } = require('jsdom')
-
 const assert = require('assert')
+
+mockAudio()
 
 describe('TaskQueue', function () {
   describe('constructor', function () {

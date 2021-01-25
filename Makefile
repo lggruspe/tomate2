@@ -1,6 +1,9 @@
 .PHONY:	all
 all:
-	cd client; npm run lint; npm test; npm run bundle; npm run minify
+	cd client; npm run lint
+	cd client; npm test
+	cd client; npm run  bundle
+	cd client; npm run minify
 	cp client/build/index.js tomate/static/index.js
 
 .PHONY:	init

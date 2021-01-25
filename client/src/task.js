@@ -45,7 +45,6 @@ module.exports.TaskQueue = class TaskQueue {
       }
       const child = container.appendChild(task.createElement(this.tasks.length > 1))
       task.timer.addAlarm(() => {
-        // TODO play audio
         this.tasks.shift()
         child.remove()
         if (container.firstChild) {

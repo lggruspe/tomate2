@@ -9,6 +9,8 @@ module.exports.Timer = class Timer {
     this.seconds = 0
     this.started = false
     this.callbacks = []
+    this.audio = new Audio(`${$STATIC}zapsplat_household_clock_alarm_digital_beep_long.mp3`)
+    this.audio.loop = true
   }
 
   isDone () {
@@ -55,12 +57,16 @@ module.exports.Timer = class Timer {
       if (!this.isDone()) {
         this.tick()
         setTimeout(oneSecond, 1000)
+      } else if (this.audio) {
+        this.audio.play()
       }
     }
 
     button.addEventListener('click', () => {
       if (this.started) {
         this.alarm()
+        this.audio.pause()
+        delete this.audio
       } else {
         this.started = true
         button.textContent = 'Parar'

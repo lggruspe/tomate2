@@ -1,6 +1,9 @@
 const { Timer } = require('../src/timer.js')
+const { mockAudio } = require('./utils.js')
 const { JSDOM } = require('jsdom')
 const assert = require('assert')
+
+mockAudio()
 
 describe('Timer', function () {
   describe('constructor', function () {
