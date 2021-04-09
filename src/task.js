@@ -59,36 +59,4 @@ class TaskQueue {
   }
 }
 
-class TaskForm {
-  constructor () {
-    this.queues = []
-  }
-
-  // Register task queue to be notified about new tasks.
-  register (queue) {
-    this.queues.push(queue)
-  }
-
-  // Tell registered queues about new task.
-  broadcast (task) {
-    for (const queue of this.queues) {
-      queue.push(task)
-    }
-  }
-
-  render (container) {
-    const duration = container.querySelector('input#duration')
-    const description = container.querySelector('input#description')
-    const button = container.querySelector('button')
-
-    button.addEventListener('click', () => {
-      const _duration = Number(duration.value)
-      if (_duration > 0) {
-        this.broadcast(new Task(_duration, description.value))
-      }
-    })
-    return container
-  }
-}
-
-export { Task, TaskQueue, TaskForm }
+export { Task, TaskQueue }

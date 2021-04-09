@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint src test",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --coverage --env jsdom",
-    "bundle": "rollup -o build/bundle.js src/index.js",
+    "bundle": "rollup -c",
     "minify": "terser build/bundle.js -o build/bundle.min.js --cm --toplevel",
     "dist": "mkdir -p dist && rm -rf dist/* && npm run bundle && npm run minify && cp public/* dist && cp build/bundle.min.js dist/app.js"
   },
@@ -15,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/lggruspe/tomate.git"
   },
-  "author": "Levi Gruspep",
+  "author": "Levi Gruspe",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/lggruspe/tomate/issues"
@@ -30,5 +30,8 @@
     "jest": "^26.6.3",
     "rollup": "^2.45.0",
     "terser": "^5.5.1"
+  },
+  "dependencies": {
+    "loulou": "^1.2.3"
   }
 }
