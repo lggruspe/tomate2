@@ -1,14 +1,7 @@
-const {
-  Task,
-  TaskForm,
-  TaskQueue
-} = require('../src/task.js')
+import { Task, TaskForm, TaskQueue } from '../src/task.js'
 
-const { mockAudio } = require('./utils.js')
-const { JSDOM } = require('jsdom')
-const assert = require('assert')
-
-mockAudio()
+import { JSDOM } from 'jsdom'
+import * as assert from 'assert'
 
 describe('TaskQueue', function () {
   describe('constructor', function () {
@@ -36,7 +29,7 @@ describe('TaskQueue', function () {
 
         assert.strictEqual(container.innerHTML, '')
         new TaskQueue().render(container)
-        assert(container.firstChild.classList.contains('message'))
+        assert.ok(container.firstChild.classList.contains('message'))
       })
     })
 
@@ -48,7 +41,7 @@ describe('TaskQueue', function () {
 
         new TaskQueue().render(container)
         assert.strictEqual(container.children.length, 1)
-        assert(!container.firstChild.classList.contains('message'))
+        assert.ok(!container.firstChild.classList.contains('message'))
       })
     })
   })
@@ -74,75 +67,67 @@ describe('TaskForm', function () {
   })
 
   describe('render', function () {
+    let container
     beforeEach(function () {
-      const html = `
-        <body>
-          <div class="tomate-queue-form">
-            <input id="#duration" type="number">
-            <input id="#description">
-            <button type="button"></button>
-          </div>
-        </body>
+      document.body.innerHTML = `
+        <div class="tomate-queue-form">
+          <input id="duration" type="number">
+          <input id="description">
+          <button type="button"></button>
+        </div>
       `
-      this.dom = new JSDOM(html)
-      this.container = this.dom.window.document.querySelector('div')
+      container = document.querySelector('div')
     })
 
-    it('should not crash', function () {
+    it('should not crash', () => {
       const queue = new TaskQueue()
       const form = new TaskForm()
       form.register(queue)
-      form.render(this.container)
-      this.container.firstChild.value = 10
-      this.container.children[1].value = 'Test'
-      this.container.querySelector('button').click()
+      form.render(container)
+      container.firstChild.value = 10
+      container.children[1].value = 'Test'
+      container.querySelector('button').click()
       // TODO test if event listeners were registered
     })
   })
 })
 
 describe('Task', function () {
-  before(function () {
-    global.document = new JSDOM('').window.document
-  })
-
-  after(function () {
-    delete global.document
-  })
-
   describe('createElement', function () {
+    let task
+
     beforeEach(function () {
-      this.task = new Task(25, 'Pomodoro')
+      task = new Task(25, 'Pomodoro')
     })
 
     describe('if disabled = true', function () {
       it('should create element with disabled button', function () {
-        const elem = this.task.createElement(true)
-        assert(elem.querySelector('button').disabled)
+        const elem = task.createElement(true)
+        assert.ok(elem.querySelector('button').disabled)
       })
     })
 
     describe('if disabled = false', function () {
       it('should create element with enabled button', function () {
-        const elem = this.task.createElement(false)
-        assert(!elem.querySelector('button').disabled)
+        const elem = task.createElement(false)
+        assert.ok(!elem.querySelector('button').disabled)
       })
     })
 
     it('should have class "task"', function () {
-      assert(this.task.createElement().classList.contains('task'))
+      assert.ok(task.createElement().classList.contains('task'))
     })
 
     it('should display timer as XX:XX', function () {
-      const elem = this.task.createElement()
+      const elem = task.createElement()
       const span = elem.querySelector('.tomate-timer')
       assert.strictEqual(span.textContent, '25:00')
     })
 
     it('should create elements needed by Timer', function () {
-      const elem = this.task.createElement()
-      assert(elem.querySelector('.tomate-timer'))
-      assert(elem.querySelector('.tomate-timer-button'))
+      const elem = task.createElement()
+      assert.ok(elem.querySelector('.tomate-timer'))
+      assert.ok(elem.querySelector('.tomate-timer-button'))
     })
 
     it('should escape double quotes', function () {

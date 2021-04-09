@@ -1,4 +1,4 @@
-const { Timer } = require('./timer.js')
+import { Timer } from './timer.js'
 
 class Task {
   constructor (duration, description) {
@@ -23,9 +23,8 @@ class Task {
     return div
   }
 }
-module.exports.Task = Task
 
-module.exports.TaskQueue = class TaskQueue {
+class TaskQueue {
   constructor () {
     this.tasks = []
   }
@@ -60,7 +59,7 @@ module.exports.TaskQueue = class TaskQueue {
   }
 }
 
-module.exports.TaskForm = class TaskForm {
+class TaskForm {
   constructor () {
     this.queues = []
   }
@@ -91,3 +90,5 @@ module.exports.TaskForm = class TaskForm {
     return container
   }
 }
+
+export { Task, TaskQueue, TaskForm }

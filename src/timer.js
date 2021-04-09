@@ -1,4 +1,4 @@
-module.exports.Timer = class Timer {
+export class Timer {
   constructor (minutes = 25) {
     if (minutes < 0 || minutes > 60) {
       throw new Error('Minutes should be between 0 and 60.')

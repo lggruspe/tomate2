@@ -1,9 +1,6 @@
-const { Timer } = require('../src/timer.js')
-const { mockAudio } = require('./utils.js')
-const { JSDOM } = require('jsdom')
-const assert = require('assert')
-
-mockAudio()
+import { Timer } from '../src/timer.js'
+import { JSDOM } from 'jsdom'
+import * as assert from 'assert'
 
 describe('Timer', function () {
   describe('constructor', function () {
@@ -30,13 +27,13 @@ describe('Timer', function () {
   describe('isDone', function () {
     describe('if there is time left', function () {
       it('should return false', function () {
-        assert(!new Timer().isDone())
+        assert.ok(!new Timer().isDone())
       })
     })
 
     describe('if there is no time left', function () {
       it('should return true', function () {
-        assert(new Timer(0).isDone())
+        assert.ok(new Timer(0).isDone())
       })
     })
   })

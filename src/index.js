@@ -1,4 +1,4 @@
-const { TaskQueue, TaskForm } = require('./task.js')
+import { TaskQueue, TaskForm } from './task.js'
 
 const taskQueue = new TaskQueue()
 const taskForm = new TaskForm()
