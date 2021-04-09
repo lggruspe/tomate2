@@ -11,6 +11,8 @@ class Task {
     const div = document.createElement('div')
     div.classList.add('task')
     const help = 'Puedes añadir #etiquetas para filtrar tareas en la página de estadísticas.'
+
+    // TODO Are there other characters that need to be escaped?
     const description = this.description.replaceAll('"', '&quot;')
     div.innerHTML = `
       <span class="tomate-timer">${this.timer.toString()}</span>
