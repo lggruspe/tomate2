@@ -1,5 +1,4 @@
 import { Timer } from '../src/timer.js'
-import { JSDOM } from 'jsdom'
 import * as assert from 'assert'
 
 describe('Timer', function () {
@@ -83,14 +82,13 @@ describe('Timer', function () {
 
   describe('render', function () {
     it('should not crash', function () {
-      const html = `
+      document.body.innerHTML = `
         <div>
           <span class="tomate-timer"></span>
           <button class="tomate-timer-button">Test</button>
         </div>
       `
-      const dom = new JSDOM(html)
-      const container = dom.window.document.querySelector('div')
+      const container = document.querySelector('div')
       new Timer().render(container)
       // TODO test if event listeners were registered
     })

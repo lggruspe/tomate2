@@ -1,6 +1,5 @@
 import { Task, TaskForm, TaskQueue } from '../src/task.js'
 
-import { JSDOM } from 'jsdom'
 import * as assert from 'assert'
 
 describe('TaskQueue', function () {
@@ -23,9 +22,8 @@ describe('TaskQueue', function () {
   describe('render', function () {
     describe('if container is empty', function () {
       it('should insert message to add task', function () {
-        const html = '<div class="tomate-queue"></div>'
-        const dom = new JSDOM(html)
-        const container = dom.window.document.querySelector('div')
+        document.body.innerHTML = '<div class="tomate-queue"></div>'
+        const container = document.querySelector('div')
 
         assert.strictEqual(container.innerHTML, '')
         new TaskQueue().render(container)
@@ -35,9 +33,8 @@ describe('TaskQueue', function () {
 
     describe('if container is not empty', function () {
       it('should not insert message to add task', function () {
-        const html = '<div class="tomate-queue"><span>Test</span></div>'
-        const dom = new JSDOM(html)
-        const container = dom.window.document.querySelector('div')
+        document.body.innerHTML = '<div class="tomate-queue"><span>Test</span></div>'
+        const container = document.querySelector('div')
 
         new TaskQueue().render(container)
         assert.strictEqual(container.children.length, 1)
