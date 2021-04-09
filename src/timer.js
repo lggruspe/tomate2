@@ -9,7 +9,7 @@ module.exports.Timer = class Timer {
     this.seconds = 0
     this.started = false
     this.callbacks = []
-    this.audio = new Audio(`${$STATIC}zapsplat_household_clock_alarm_digital_beep_long.mp3`)
+    this.audio = new Audio('zapsplat_household_clock_alarm_digital_beep_long.mp3')
     this.audio.loop = true
   }
 
