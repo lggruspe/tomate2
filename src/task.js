@@ -1,4 +1,5 @@
 import { Timer } from './timer.js'
+import * as loulou from 'loulou'
 
 class Task {
   constructor (duration, description) {
@@ -8,19 +9,20 @@ class Task {
   }
 
   createElement (disabled = true) {
-    const div = document.createElement('div')
-    div.classList.add('task')
     const help = 'Puedes añadir #etiquetas para filtrar tareas en la página de estadísticas.'
-
     // TODO Are there other characters that need to be escaped?
     const description = this.description.replaceAll('"', '&quot;')
-    div.innerHTML = `
-      <span class="tomate-timer">${this.timer.toString()}</span>
-      <input required title="${help}" value="${description}">
-      <button${disabled ? ' disabled' : ''} class="tomate-timer-button">Empezar</button>
-    `
-    this.timer.render(div)
-    return div
+
+    const $ = loulou.to$(`
+      <div class="task">
+        <span class="tomate-timer">${this.timer.toString()}</span>
+        <input required title="${help}" value="${description}">
+        <button${disabled ? ' disabled' : ''} class="tomate-timer-button">Empezar</button>
+      </div>
+    `)
+
+    this.timer.render($())
+    return $()
   }
 }
 
