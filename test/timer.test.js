@@ -40,18 +40,4 @@ describe('Timer', function () {
       assert.ok(ok)
     })
   })
-
-  describe('render', function () {
-    it('should not crash', function () {
-      document.body.innerHTML = `
-        <div>
-          <span class="tomate-timer"></span>
-          <button class="tomate-timer-button">Test</button>
-        </div>
-      `
-      const container = document.querySelector('div')
-      new Timer().render(container)
-      // TODO test if event listeners were registered
-    })
-  })
 })
