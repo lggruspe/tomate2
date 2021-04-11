@@ -47,7 +47,7 @@ class TaskQueue {
         container.lastChild.remove()
       }
       const child = container.appendChild(task.createElement(this.tasks.length > 1))
-      task.timer.addAlarm(() => {
+      task.timer.setCallback(() => {
         this.tasks.shift()
         child.remove()
         if (container.firstChild) {

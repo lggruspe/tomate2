@@ -38,14 +38,12 @@ describe('Timer', function () {
   })
 
   describe('alarm', function () {
-    it('should invoke registered alarm callbacks', function () {
-      const result = []
-      new Timer()
-        .addAlarm(() => result.push(1))
-        .addAlarm(() => result.push(2))
-        .addAlarm(() => result.push(3))
-        .alarm()
-      assert.deepStrictEqual(result, [1, 2, 3])
+    it('should invoke alarm callback', function () {
+      let ok = false
+      new Timer().setCallback(() => {
+        ok = true
+      }).alarm()
+      assert.ok(ok)
     })
   })
 

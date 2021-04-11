@@ -2,7 +2,7 @@ function tick () {
   return new Promise(resolve => setTimeout(resolve, 1000))
 }
 
-class _Timer {
+class AsyncTimer {
   constructor (seconds) {
     this.seconds = seconds
   }
@@ -41,7 +41,7 @@ export class Timer {
     this.minutes = minutes
     this.seconds = 0
     this.started = false
-    this.callbacks = []
+    this.callback = () => {}
     this.audio = new Audio('zapsplat_household_clock_alarm_digital_beep_long.mp3')
     this.audio.loop = true
   }
@@ -70,15 +70,13 @@ export class Timer {
     return `${minutes}:${seconds}`
   }
 
-  addAlarm (callback) {
-    this.callbacks.push(callback)
+  setCallback (callback) {
+    this.callback = callback
     return this
   }
 
   alarm () {
-    for (const callback of this.callbacks) {
-      callback()
-    }
+    this.callback()
   }
 
   render (container) {
