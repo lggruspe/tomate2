@@ -20,15 +20,35 @@ class AsyncTimer {
   }
 }
 
-function prettify (seconds) {
-  const mins = Math.floor(seconds/60)
-  const secs = seconds & 60
+export function prettify (seconds) {
+  const mins = Math.floor(seconds / 60)
+  const secs = seconds % 60
   if (mins > 60) {
     throw new Error('unimplemented')
   }
   const mm = mins < 10 ? '0' + mins : mins
   const ss = secs < 10 ? '0' + secs : secs
   return `${mm}:${ss}`
+}
+
+class Beep {
+  constructor (path) {
+    this.audio = new Audio(path)
+    this.audio.loop = true
+  }
+
+  play () {
+    if (this.audio) {
+      this.audio.play()
+    }
+  }
+
+  stop () {
+    if (this.audio) {
+      this.audio.pause()
+      delete this.audio
+    }
+  }
 }
 
 export class Timer {
@@ -40,70 +60,32 @@ export class Timer {
     }
     this.minutes = minutes
     this.seconds = 0
-    this.started = false
-    this.callback = () => {}
-    this.audio = new Audio('zapsplat_household_clock_alarm_digital_beep_long.mp3')
-    this.audio.loop = true
-  }
-
-  isDone () {
-    return this.seconds === 0 && this.minutes === 0
-  }
-
-  tick () {
-    if (this.seconds > 0) {
-      this.seconds--
-    } else if (this.minutes > 0) {
-      this.minutes--
-      this.seconds = 59
-    }
-    return this
-  }
-
-  toString () {
-    const minutes = this.minutes < 10
-      ? '0' + this.minutes
-      : this.minutes
-    const seconds = this.seconds < 10
-      ? '0' + this.seconds
-      : this.seconds
-    return `${minutes}:${seconds}`
+    this.alarmCallback = () => {}
+    this.beep = new Beep('zapsplat_household_clock_alarm_digital_beep_long.mp3')
   }
 
   setCallback (callback) {
-    this.callback = callback
+    this.alarmCallback = callback
     return this
-  }
-
-  alarm () {
-    this.callback()
   }
 
   render (container) {
     const timer = container.querySelector('.tomate-timer')
     const button = container.querySelector('.tomate-timer-button')
 
-    const oneSecond = () => {
-      timer.textContent = this.toString()
-      if (!this.isDone()) {
-        this.tick()
-        setTimeout(oneSecond, 1000)
-      } else if (this.audio) {
-        this.audio.play()
-      }
+    const onTick = secs => {
+      timer.textContent = prettify(secs)
     }
 
-    button.addEventListener('click', () => {
-      if (this.started) {
-        this.alarm()
-        this.audio.pause()
-        delete this.audio
-      } else {
-        this.started = true
-        button.textContent = 'Parar'
-        oneSecond()
+    const asyncTimer = new AsyncTimer(this.minutes * 60 + this.seconds)
+    button.onclick = () => {
+      button.textContent = 'Parar'
+      asyncTimer.start(onTick).then(() => this.beep.play())
+      button.onclick = () => {
+        this.alarmCallback()
+        this.beep.stop()
       }
-    })
+    }
     return container
   }
 }

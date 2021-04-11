@@ -1,5 +1,13 @@
-import { Timer } from '../src/timer.js'
+import { prettify, Timer } from '../src/timer.js'
 import * as assert from 'assert'
+
+describe('prettify', function () {
+  it('should return a string of the form XX:XX', () => {
+    assert.strictEqual(prettify(25 * 60), '25:00')
+    assert.strictEqual(prettify(0), '00:00')
+    assert.strictEqual(prettify(24 * 60 + 59), '24:59')
+  })
+})
 
 describe('Timer', function () {
   describe('constructor', function () {
@@ -23,58 +31,13 @@ describe('Timer', function () {
     })
   })
 
-  describe('isDone', function () {
-    describe('if there is time left', function () {
-      it('should return false', function () {
-        assert.ok(!new Timer().isDone())
-      })
-    })
-
-    describe('if there is no time left', function () {
-      it('should return true', function () {
-        assert.ok(new Timer(0).isDone())
-      })
-    })
-  })
-
-  describe('alarm', function () {
-    it('should invoke alarm callback', function () {
+  describe('setCallback', function () {
+    it('should set alarm callback', () => {
       let ok = false
       new Timer().setCallback(() => {
         ok = true
-      }).alarm()
+      }).alarmCallback()
       assert.ok(ok)
-    })
-  })
-
-  describe('tick', function () {
-    it('should not tick below 00:00', function () {
-      const timer = new Timer(0).tick()
-      assert.strictEqual(timer.minutes, 0)
-      assert.strictEqual(timer.seconds, 0)
-    })
-
-    it('should tick down by 1 second', function () {
-      const timer = new Timer()
-      timer.seconds = 1
-      assert.strictEqual(timer.minutes, 25)
-      assert.strictEqual(timer.seconds, 1)
-
-      timer.tick()
-      assert.strictEqual(timer.minutes, 25)
-      assert.strictEqual(timer.seconds, 0)
-
-      timer.tick()
-      assert.strictEqual(timer.minutes, 24)
-      assert.strictEqual(timer.seconds, 59)
-    })
-  })
-
-  describe('toString', function () {
-    it('should return a string of the form XX:XX', function () {
-      assert.strictEqual(new Timer().toString(), '25:00')
-      assert.strictEqual(new Timer(0).toString(), '00:00')
-      assert.strictEqual(new Timer().tick().toString(), '24:59')
     })
   })
 

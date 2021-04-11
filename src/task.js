@@ -1,4 +1,4 @@
-import { Timer } from './timer.js'
+import { prettify, Timer } from './timer.js'
 import * as loulou from 'loulou'
 
 class Task {
@@ -13,9 +13,11 @@ class Task {
     // TODO Are there other characters that need to be escaped?
     const description = this.description.replaceAll('"', '&quot;')
 
+    const mins = this.timer.minutes
+    const secs = this.timer.seconds
     const $ = loulou.to$(`
       <div class="task">
-        <span class="tomate-timer">${this.timer.toString()}</span>
+        <span class="tomate-timer">${prettify(mins * 60 + secs)}</span>
         <input required title="${help}" value="${description}">
         <button${disabled ? ' disabled' : ''} class="tomate-timer-button">Empezar</button>
       </div>
