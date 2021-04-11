@@ -32,6 +32,6 @@
     "terser": "^5.5.1"
   },
   "dependencies": {
-    "loulou": "^1.2.3"
+    "loulou": "^1.2.4"
   }
 }

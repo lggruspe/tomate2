@@ -5,7 +5,7 @@ export default {
     file: 'build/bundle.js',
     format: 'es',
     paths: {
-      loulou: 'https://cdn.jsdelivr.net/npm/loulou@1.2.3/dist/index.esm.js'
+      loulou: 'https://cdn.jsdelivr.net/npm/loulou@1.2.4/dist/index.esm.js'
     }
   }
 }

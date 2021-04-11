@@ -1,3 +1,5 @@
+@import 'tomate.css';
+
 :root {
   --color-a: #cc9c9c;
   --color-b: #df8e8e;
@@ -95,37 +97,6 @@ footer {
   background-color: var(--color-e);
 }
 
-.message {
-  text-align: center;
-}
-
-.task {
-  align-items: center;
-  gap: 1em;
-  display: flex;
-  margin: 0.5em 0;
-}
-
-.task input {
-  flex: auto;
-  min-width: 200px;
-}
-
-.form-item {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  margin: 0.5em 0;
-}
-
-.form-item input {
-  flex: auto;
-}
-
-.form-button {
-  text-align: right;
-}
-
 #hamburger-checkbox,
 .hamburger-button {
   display: none;
@@ -155,27 +126,5 @@ footer {
     justify-content: center;
     font-size: 1.5em;
     text-align: center;
-  }
-}
-
-@media screen and (max-width: 630px) {
-  .form-item {
-    flex-direction: column;
-  }
-
-  .form-item input {
-    box-sizing: border-box;
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .task {
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .task input {
-    order: 1;
   }
 }
