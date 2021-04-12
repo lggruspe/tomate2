@@ -1,4 +1,4 @@
-import { Task } from './task.js'
+import { Task } from './list.js'
 import * as loulou from 'loulou'
 
 export function createTaskForm (list) {
@@ -21,9 +21,9 @@ export function createTaskForm (list) {
   const duration = $('#duration')
   const description = $('#description')
   $('button').onclick = () => {
-    const value = Number(duration.value)
-    if (value > 0) {
-      list.push(new Task(value, description.value))
+    const minutes = Number(duration.value)
+    if (minutes > 0) {
+      list.add(new Task(minutes * 60, description.value))
     }
   }
   return $()
