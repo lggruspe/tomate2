@@ -1,48 +1,27 @@
 import { prettify, AsyncTimer, Timer } from './timer.js'
+import Beep from './beep.js'
 import * as loulou from 'loulou'
-
-class Beep {
-  constructor (path) {
-    this.audio = new Audio(path)
-    this.audio.loop = true
-  }
-
-  play () {
-    if (this.audio) {
-      this.audio.play()
-    }
-  }
-
-  stop () {
-    if (this.audio) {
-      this.audio.pause()
-      delete this.audio
-    }
-  }
-}
 
 class Task {
   constructor (duration, description) {
     this.timer = new Timer(duration)
     this.duration = duration
     this.description = description
-    this.beep = new Beep('zapsplat_household_clock_alarm_digital_beep_long.mp3')
+    this.beep = new Beep('beep.mp3')
   }
 
   createElement (disabled = true) {
     const help = 'Puedes añadir #etiquetas para filtrar tareas en la página de estadísticas.'
-    // TODO Are there other characters that need to be escaped?
-    const description = this.description.replaceAll('"', '&quot;')
-
     const mins = this.timer.minutes
     const secs = this.timer.seconds
     const $ = loulou.to$(`
       <div class="task">
         <span class="tomate-timer">${prettify(mins * 60 + secs)}</span>
-        <input required title="${help}" value="${description}">
+        <input required title="${help}">
         <button${disabled ? ' disabled' : ''} class="tomate-timer-button">Empezar</button>
       </div>
     `)
+    $('input').value = this.description
 
     const timer = $('.tomate-timer')
     const button = $('.tomate-timer-button')
