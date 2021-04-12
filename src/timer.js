@@ -30,21 +30,3 @@ export function prettify (seconds) {
   const ss = secs < 10 ? '0' + secs : secs
   return `${mm}:${ss}`
 }
-
-export class Timer {
-  constructor (minutes = 25) {
-    if (minutes < 0 || minutes > 60) {
-      throw new Error('Minutes should be between 0 and 60.')
-    } else if (!Number.isInteger(minutes)) {
-      throw new Error('Minutes should be an integer.')
-    }
-    this.minutes = minutes
-    this.seconds = 0
-    this.alarmCallback = () => {}
-  }
-
-  setCallback (callback) {
-    this.alarmCallback = callback
-    return this
-  }
-}
