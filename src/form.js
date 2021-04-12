@@ -3,7 +3,7 @@ import * as loulou from 'loulou'
 
 export function createTaskForm (list) {
   const $ = loulou.to$(`
-    <form class="card tomate-queue-form">
+    <form class="card">
       <div class="form-item">
         <label for="duration">¿Cuántos minutos necesitas para hacer la tarea?</label>
         <input type="number" id="duration" min-value="0" max-value="60" value="25" required>

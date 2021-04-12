@@ -61,14 +61,14 @@ describe('Task', function () {
 
     it('should display timer as XX:XX', function () {
       const elem = task.render()
-      const span = elem.querySelector('.tomate-timer')
+      const span = elem.querySelector('span')
       assert.strictEqual(span.textContent, '25:00')
     })
 
     it('should create elements needed by Timer', function () {
       const elem = task.render()
-      assert.ok(elem.querySelector('.tomate-timer'))
-      assert.ok(elem.querySelector('.tomate-timer-button'))
+      assert.ok(elem.querySelector('span'))
+      assert.ok(elem.querySelector('button'))
     })
 
     it('should escape double quotes', function () {

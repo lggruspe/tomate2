@@ -13,16 +13,16 @@ class Task {
     const help = 'Puedes añadir #etiquetas para filtrar tareas en la página de estadísticas.'
     const $ = loulou.to$(`
       <div class="task">
-        <span class="tomate-timer">${prettify(this.seconds)}</span>
+        <span>${prettify(this.seconds)}</span>
         <input required title="${help}">
-        <button disabled class="tomate-timer-button">Empezar</button>
+        <button disabled>Empezar</button>
       </div>
     `)
     $('input').value = this.description
 
     const beep = new Beep('beep.mp3')
-    const timer = $('.tomate-timer')
-    const button = $('.tomate-timer-button')
+    const timer = $('span')
+    const button = $('button')
     const onTick = secs => {
       timer.textContent = prettify(secs)
     }
@@ -57,7 +57,7 @@ class TaskList {
   }
 
   render () {
-    const $ = loulou.to$('<section class="card tomate-queue"></section>')
+    const $ = loulou.to$('<section class="card"></section>')
     this.update($)
     return $()
   }
